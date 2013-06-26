@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "apac": "https://github.com/dmcquay/node-apac.git",
+    "apac": "https://github.com/dmcquay/node-apac/tarball/master",
     "express": "3.x",
     "js-yaml": "2.x",
     "mocha": "1.11.0",
