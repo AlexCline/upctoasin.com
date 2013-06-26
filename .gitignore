@@ -1,0 +1,4 @@
+!.gitignore
+conf/aws.yaml
+.DS_Store
+node_modules
