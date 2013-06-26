@@ -5,7 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 		<link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
-		<link href="css/upctoasin.css" rel="stylesheet" />
+    <style>
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      .hero-unit h1 {
+        cursor: pointer;
+      }
+
+      #result {
+        display: none;
+      }
+    </style>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -25,16 +38,17 @@
         <div class="span4 offset2">
           <h2>Lookup</h2>
           <p>Use this form to convert a UPC to an ASIN:</p>
-          <div class="form">
-          	<form action="#">
-          		<input name="q" placeholder="UPC" />
+          <p>
+          	<form action="#" id="lookup">
+          		<input name="upc" id="upc" placeholder="UPC" />
           		<input type="submit" value="Lookup" />
           	</form>
-          </div>
+          </p>
+          <div id="result">Result: <code></code></div>
         </div>
         <div class="span4">
-          <h2>API</h2>
-          <p>You can submit a simple query to the API to return an ASIN like this:</p>
+          <h2>REST API</h2>
+          <p>You can submit a simple GET query to the REST to return an ASIN like this:</p>
           <p><code>http://upctoasin.com/012569828490</code></p>
           <p>The body of the resulting page will contain the ASIN corresponding to the UPC entered.</p>
        </div>
@@ -43,11 +57,23 @@
       <hr>
 
       <footer>
-        <p>&copy; Alex Cline 2013</p>
+        <p>&copy; <a href="http://alexcline.net">Alex Cline</a> <script>document.write(new Date().getFullYear())</script></p>
       </footer>
     </div>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+      $('.hero-unit h1').click(function(){
+        document.location.href = "/";
+      });
+      $(lookup).submit(function() {
+        $.get('/' + $('#upc').val(), function(data){
+          $('#result code').html(data);
+          $('#result').slideDown('fast');
+        });
+        return false;
+      });
+    </script>
   </body>
 </html>
