@@ -1,0 +1,4 @@
+-u exports
+--timeout 10000
+--slow 500
+--reporter spec
