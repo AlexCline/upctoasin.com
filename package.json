@@ -6,6 +6,7 @@
   "dependencies": {
     "apac": "0.0.11",
     "express": "3.x",
+    "js-yaml": "2.x",
     "mocha": "1.11.0",
     "should": "1.2.2"
   }
