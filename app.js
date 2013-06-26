@@ -1,6 +1,6 @@
 var express   = require('express'),
-		path      = require('path'),
-		upctoasin = require('./lib/upctoasin.js');
+    path      = require('path'),
+    upctoasin = require('./lib/upctoasin.js');
 
 var app = express();
 app.use(express.bodyParser());
@@ -11,13 +11,13 @@ app.use(app.router);
 //app.enable('trust proxy');
 
 app.get('/[0-9]{12}', function(req, res){
-	upctoasin.lookup(req.url, function(err, data){
-		res.send(data);
-	});
+  upctoasin.lookup(req.url, function(err, data){
+    res.send(data);
+  });
 });
 
 app.get('*', function(req, res){
-	res.redirect('/');
+  res.redirect('/');
 });
 
 function errorHandler(err, req, res, next) {
