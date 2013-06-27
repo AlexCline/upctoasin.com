@@ -1,1 +1,5 @@
 logfile:  log/upctoasin.js
+dbpath: db
+test:
+  upc: 012569828490
+  asin: B000I5XOVY

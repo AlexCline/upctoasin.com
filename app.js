@@ -1,6 +1,7 @@
-var express   = require('express'),
-    path      = require('path'),
-    upctoasin = require('./lib/upctoasin.js');
+var amazon  = require('./lib/amazon.js'),
+    express = require('express'),
+    path    = require('path'),
+    sqlite  = require('./lib/sqlite.js');
 
 var app = express();
 app.use(express.bodyParser());
@@ -11,9 +12,22 @@ app.use(app.router);
 app.enable('trust proxy');
 
 app.get('/[0-9]{12}', function(req, res){
-  upctoasin.lookup(req.url, function(err, data){
-    res.send(data);
+  // Check if the UPC is in the db
+  upc = req.url.slice(1);
+  sqlite.lookup(upc, function(err, result){
+    if(!result) {
+      amazon.lookup(upc, function(err, result){
+        sqlite.cache(upc, result, function(err, result){});
+        res.send(result);
+      });
+    } else {
+      res.send(result);
+    }
   });
+
+  // If not in the db, lookup via amazon
+
+  // If not in amazon, save to db
 });
 
 app.get('*', function(req, res){
