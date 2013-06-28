@@ -3,6 +3,12 @@ UPCtoASIN.com
 
 UPCtoASIN.com -- A website to easily convert a UPC to an ASIN.
 
+Features
+--------
+
+1. There is an sqlite database used for caching lookups.
+2. Requests to the Amazon API are throttled to 1 request/sec.
+
 Installation
 ------------
 

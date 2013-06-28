@@ -15,8 +15,10 @@ app.get('/[0-9]{12}', function(req, res){
   // Check if the UPC is in the db
   upc = req.url.slice(1);
   sqlite.lookup(upc, function(err, result){
+    // If it's not in the db, query amazon
     if(!result) {
       amazon.lookup(upc, function(err, result){
+        // Save the upc and asin to the db
         sqlite.cache(upc, result, function(err, result){});
         res.send(result);
       });
@@ -25,9 +27,6 @@ app.get('/[0-9]{12}', function(req, res){
     }
   });
 
-  // If not in the db, lookup via amazon
-
-  // If not in amazon, save to db
 });
 
 app.get('*', function(req, res){
