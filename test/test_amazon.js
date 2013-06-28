@@ -7,7 +7,7 @@ var amazon = process.env.EXPRESS_COV
 describe('UPCtoASIN.com -- Amazon Lookup Module', function(){
   describe('#lookup()', function(){
 
-    it('returns the correct ASIN for a known UPC', function(done){
+    it('returns the correct ASIN for a known UPC (API)', function(done){
       // This is the UPC for the Serenity Blu-Ray
       amazon.lookup('025192107900', function(err, data){
         data.should.equal('B004ZJZPXO');
@@ -15,7 +15,7 @@ describe('UPCtoASIN.com -- Amazon Lookup Module', function(){
       });
     });
 
-    it('returns an error for a UPC with multiple items', function(done){
+    it('returns an error for a UPC with multiple items (API)', function(done){
       amazon.lookup('000000000000', function(err, data){
         err.should.not.equal(null);
         data.should.not.equal(null);
@@ -23,7 +23,7 @@ describe('UPCtoASIN.com -- Amazon Lookup Module', function(){
       });
     });
 
-    it('returns an error for a UPC with no items', function(done){
+    it('returns an error for a UPC with no items (API)', function(done){
       amazon.lookup('012345678901', function(err, data){
         err.should.not.equal(null);
         data.should.equal('UPCNOTFOUND');
