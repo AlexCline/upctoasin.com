@@ -1,6 +1,6 @@
 var should = require('should');
 
-var amazon = process.env.EXPRESS_COV
+var amazon = process.env.UPCTOASIN_COV
    ? require('../lib-cov/amazon.js')
    : require('../lib/amazon.js');
 

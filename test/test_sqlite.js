@@ -3,7 +3,7 @@ var fs     = require('fs'),
     should = require('should'),
     yaml   = require('js-yaml');;
 
-var sqlite = process.env.EXPRESS_COV
+var sqlite = process.env.UPCTOASIN_COV
    ? require('../lib-cov/sqlite.js')
    : require('../lib/sqlite.js');
 
