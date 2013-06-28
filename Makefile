@@ -1,6 +1,6 @@
 DOCS = docs/*.md
 REPORTER = spec
-export PATH := ./node_modules/mocha/bin:$(PATH)
+export PATH := ./node_modules/mocha/bin:./node_modules/jscoverage/bin:$(PATH)
 
 test:
 	@NODE_ENV=test mocha -R $(REPORTER)
@@ -13,6 +13,6 @@ test-cov: lib-cov
 
 lib-cov:
 	@rm lib-cov/*
-	@jscoverage lib lib-cov
+	jscoverage lib lib-cov
 
 .PHONY: test

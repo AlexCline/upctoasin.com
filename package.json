@@ -9,6 +9,7 @@
     "js-yaml": "2.x",
     "mocha":   "1.x",
     "should":  "1.x",
-    "sqlite3":  "2.1.x"
+    "sqlite3":  "2.1.x",
+    "jscoverage": "0.3.x"
   }
 }
