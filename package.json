@@ -17,6 +17,6 @@
     "url": "git://github.com/AlexCline/upctoasin.com"
   },
   "scripts": {
-    "test": "make test-no-api"
+    "test": "make test-no-aws"
   }
 }

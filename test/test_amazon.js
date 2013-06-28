@@ -7,7 +7,7 @@ var amazon = process.env.EXPRESS_COV
 describe('UPCtoASIN.com -- Amazon Lookup Module', function(){
   describe('#lookup()', function(){
 
-    it('returns the correct ASIN for a known UPC (API)', function(done){
+    it('returns the correct ASIN for a known UPC (AWS)', function(done){
       // This is the UPC for the Serenity Blu-Ray
       amazon.lookup('025192107900', function(err, data){
         data.should.equal('B004ZJZPXO');
@@ -15,7 +15,7 @@ describe('UPCtoASIN.com -- Amazon Lookup Module', function(){
       });
     });
 
-    it('returns an error for a UPC with multiple items (API)', function(done){
+    it('returns an error for a UPC with multiple items (AWS)', function(done){
       amazon.lookup('000000000000', function(err, data){
         err.should.not.equal(null);
         data.should.not.equal(null);
@@ -23,7 +23,7 @@ describe('UPCtoASIN.com -- Amazon Lookup Module', function(){
       });
     });
 
-    it('returns an error for a UPC with no items (API)', function(done){
+    it('returns an error for a UPC with no items (AWS)', function(done){
       amazon.lookup('012345678901', function(err, data){
         err.should.not.equal(null);
         data.should.equal('UPCNOTFOUND');
@@ -70,7 +70,7 @@ describe('UPCtoASIN.com -- Amazon Lookup Module', function(){
     });
   });
 
-  describe('#getAWSCredentials() (API)', function(){
+  describe('#getAWSCredentials() (AWS)', function(){
     var creds = null;
     before(function(){
       creds = amazon.getAWSCredentials();
