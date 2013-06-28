@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(app.router);
 app.enable('trust proxy');
 
-app.get('/[0-9]{12}', function(req, res){
+app.get('/[0-9]{12}[0-9]?', function(req, res){
   // Check if the UPC is in the db
   upc = req.url.slice(1);
   sqlite.lookup(upc, function(err, result){
