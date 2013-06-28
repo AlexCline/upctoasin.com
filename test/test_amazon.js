@@ -70,7 +70,7 @@ describe('UPCtoASIN.com -- Amazon Lookup Module', function(){
     });
   });
 
-  describe('#getAWSCredentials()', function(){
+  describe('#getAWSCredentials() (API)', function(){
     var creds = null;
     before(function(){
       creds = amazon.getAWSCredentials();
