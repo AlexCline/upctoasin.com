@@ -4,3 +4,4 @@ conf/aws.yaml
 node_modules
 *.sqlite
 coverage.html
+.coveralls.yml
