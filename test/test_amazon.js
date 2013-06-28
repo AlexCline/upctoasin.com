@@ -4,7 +4,7 @@ var amazon = process.env.EXPRESS_COV
    ? require('../lib-cov/amazon.js')
    : require('../lib/amazon.js');
 
-xdescribe('UPCtoASIN.com -- Amazon Lookup Module', function(){
+describe('UPCtoASIN.com -- Amazon Lookup Module', function(){
   describe('#lookup()', function(){
 
     it('returns the correct ASIN for a known UPC', function(done){
@@ -32,12 +32,29 @@ xdescribe('UPCtoASIN.com -- Amazon Lookup Module', function(){
     });
   });
 
+  describe('#getLastReqTime()', function(){
+    it('returns a timestamp', function(done){
+      amazon.getLastReqTime(function(err, results){
+        regex = /^\d{10}$/
+        regex.test(results).should.equal(true);
+        done();
+      });
+    });
+  });
+
+  describe('#setLastReqTime()', function(){
+    it('returns a timestamp', function(done){
+      amazon.setLastReqTime(Math.floor(new Date / 1000), function(err, results){
+        should.not.exist(err);
+        done();
+      });
+    });
+  });
+
   describe('#getConfig()', function(){
     var config = null;
     before(function(){
-      amazon.getConfig(function(err, data){
-        config = data;
-      });
+      config = amazon.getConfig();
     });
 
     it('has a non-null config object', function(){
@@ -47,14 +64,16 @@ xdescribe('UPCtoASIN.com -- Amazon Lookup Module', function(){
     it('has a valid log file location', function(){
       should.exist(config.logfile);
     });
+
+    it('has a valid dbpath', function(){
+      should.exist(config.dbpath);
+    });
   });
 
   describe('#getAWSCredentials()', function(){
     var creds = null;
     before(function(){
-      amazon.getAWSCredentials(function(err, data){
-        creds = data;
-      });
+      creds = amazon.getAWSCredentials();
     });
 
     it('has a non-null creds object', function(){
