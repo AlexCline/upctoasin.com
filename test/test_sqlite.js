@@ -14,30 +14,33 @@ var data = yaml.load(fs.readFileSync(path.join(basepath, 'conf/config.yaml'), 'u
 describe('UPCtoASIN.com -- SQLite Caching Module', function(){
 
   describe('#lookup()', function(){
-    it('returns null when looking up a UPC not in the db', function(){
+    it('returns null when looking up a UPC not in the db', function(done){
       sqlite.lookup('000000000000', function(err, result){
         should.not.exist(result);
         err.should.not.equal(null);
+        done();
       });
     });
 
-    it('returns the ASIN of a UPC in the db', function(){
+    it('returns the ASIN of a UPC in the db', function(done){
       sqlite.cache(data.test.upc, data.test.asin, function(err, result){
         sqlite.lookup(data.test.upc, function(err, result){
           should.exist(result);
           should.not.exist(err);
+          done();
         });
       });
     });
   });
 
   describe('#cleanup()', function(){
-    it('removes the test UPC/ASIN from the db', function(){
+    it('removes the test UPC/ASIN from the db', function(done){
       sqlite.cleanup(function(err, result){
         should.not.exist(err);
         sqlite.lookup(data.test.upc, function(err, result){
           should.not.exist(result);
           err.should.not.equal(null);
+          done();
         });
       });
     });
@@ -45,19 +48,21 @@ describe('UPCtoASIN.com -- SQLite Caching Module', function(){
 
   describe('#cache()', function(){
     // This tries to save the same info twice.
-    it('returns an error when saving a duplicate UPC/ASIN to the db', function(){
+    it('returns an error when saving a duplicate UPC/ASIN to the db', function(done){
       sqlite.cache(data.test.upc, data.test.asin, function(err, result){
         sqlite.cache(data.test.upc, data.test.asin, function(err, result){
           err.should.not.equal(null);
+          done();
         });
       });
     });
 
     // This one removes the test UPC/ASIN from the db, then adds it again.
-    it('returns a non-null object when saving a UPC/ASIN to the db', function(){
+    it('returns a non-null object when saving a UPC/ASIN to the db', function(done){
       sqlite.cleanup(function(err, result){  
         sqlite.cache(data.test.upc, data.test.asin, function(err, result){
           should.not.exist(err);
+          done();
         });
       });
     });
@@ -66,9 +71,7 @@ describe('UPCtoASIN.com -- SQLite Caching Module', function(){
   describe('#getConfig()', function(){
     var config = null;
     before(function(){
-      sqlite.getConfig(function(err, data){
-        config = data;
-      });
+      config = sqlite.getConfig();
     });
 
     it('has a non-null config object', function(){
