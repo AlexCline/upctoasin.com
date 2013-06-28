@@ -11,5 +11,12 @@
     "should":  "1.x",
     "sqlite3":  "2.1.x",
     "jscoverage": "0.3.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AlexCline/upctoasin.com"
+  },
+  "scripts": {
+    "test": "make test"
   }
 }

@@ -1,6 +1,8 @@
 UPCtoASIN.com
 =============
 
+[![Build Status](https://travis-ci.org/AlexCline/upctoasin.com.png?branch=master)](https://travis-ci.org/AlexCline/upctoasin.com)
+
 UPCtoASIN.com -- A website to easily convert a UPC to an ASIN.
 
 Features
