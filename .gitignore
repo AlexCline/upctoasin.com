@@ -3,3 +3,4 @@ conf/aws.yaml
 .DS_Store
 node_modules
 *.sqlite
+coverage.html
