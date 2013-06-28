@@ -6,7 +6,7 @@ test:
 
 test-no-aws:
 	@echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
-	@UPCTOASIN_COV=1 $(MAKE) test REPORTER=mocha-lcov-reporter OPTS='-i -g AWS'
+	$(MAKE) test OPTS='-i -g AWS'
 
 test-ci:
 	$(MAKE) test REPORTER=min OPTS='-w'
