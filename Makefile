@@ -12,8 +12,8 @@ test-ci:
 	$(MAKE) test REPORTER=min OPTS='-w'
 
 test-cov: lib-cov
-	@UPCTOASIN_COV=1 $(MAKE) test REPORTER=html-cov > coverage.html
-	@UPCTOASIN_COV=1 $(MAKE) test REPORTER=mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
+	@UPCTOASIN_COV=1 $(MAKE) -s test REPORTER=html-cov > coverage.html
+	@UPCTOASIN_COV=1 $(MAKE) -s test REPORTER=mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
 	
 lib-cov:
 	@rm -f lib-cov/*
