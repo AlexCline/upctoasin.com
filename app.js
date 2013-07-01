@@ -18,8 +18,10 @@ app.get('/[0-9]{12}[0-9]?', function(req, res){
     // If it's not in the db, query amazon
     if(!result) {
       amazon.lookup(upc, function(err, result){
-        // Save the upc and asin to the db
-        sqlite.cache(upc, result, function(err, result){});
+        // Save the upc and asin to the db if it's valid.
+        if (upc != 'UPCNOTFOUND' || upc != 'UPCLOOKUPERROR')
+          sqlite.cache(upc, result, function(err, result){});
+        
         res.send(result);
       });
     } else {
