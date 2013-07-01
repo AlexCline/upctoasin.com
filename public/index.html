@@ -19,12 +19,6 @@
         display: none;
       }
     </style>
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
-
   </head>
   
   <body>
@@ -35,7 +29,11 @@
       </div>
 
       <div class="row">
-        <div class="span4 offset2">
+        <div class="span2" id="product" style="visibility:hidden">
+          <h2>Product</h2>
+          <p><iframe src="about:blank" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" id="amazon"></iframe></p>
+        </div>
+        <div class="span4">
           <h2>Lookup</h2>
           <p>Use this form to convert a UPC to an ASIN:</p>
           <p>
@@ -44,12 +42,12 @@
               <input type="submit" value="Lookup" />
             </form>
           </p>
-          <div id="result">Result: <code></code></div>
+          <div id="result"><strong>Result:</strong> <span><img src="img/spin.gif" /></span><code></code></div>
         </div>
         <div class="span4">
           <h2>REST API</h2>
           <p>You can submit a simple GET query to the REST to return an ASIN like this:</p>
-          <p><code>http://upctoasin.com/012569828490</code></p>
+          <p><code>http://upctoasin.com/027616716927</code></p>
           <p>The body of the resulting page will contain the ASIN corresponding to the UPC specified.</p>
        </div>
       </div>
@@ -78,11 +76,25 @@
         document.location.href = "/";
       });
       $(lookup).submit(function() {
+        AmznURL = "http://rcm-na.amazon-adsystem.com/e/cm?lt1=_blank&bc1=FFFFFF&IS2=1&nou=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=wishlistpl.us-20&o=1&p=8&l=as1&m=amazon&f=ifr&ref=tf_til&asins=";
         $.get('/' + $('#upc').val(), function(data){
           $('#result code').html(data);
           $('#result').slideDown('fast');
+          $('#product p iframe').attr("src", AmznURL + data);
+          $('#product').css("visibility", "visible");
         });
         return false;
+      });
+      jQuery.ajaxSetup({
+        beforeSend: function() {
+          $('#result span').show();
+          $('#result code').hide();
+        },
+        complete: function() {
+          $('#result code').show();
+          $('#result span').hide();
+        },
+        success: function() {}
       });
     </script>
     <script>
