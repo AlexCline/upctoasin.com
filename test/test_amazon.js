@@ -82,14 +82,17 @@ describe('UPCtoASIN.com -- Amazon Lookup Module', function(){
 
     it('has a valid AWSAccessKeyId value', function(){
       should.exist(creds.AWSAccessKeyId);
+      should.not.equal('YOURAWSACCESSID');
     });
 
     it('has a valid AWSSecretKey value', function(){
       should.exist(creds.AWSSecretKey);
+      should.not.equal('YOURAWSSECRETKEY');
     });
 
     it('has a valid AWSTagId value', function(){
       should.exist(creds.AWSTagId);
+      should.not.equal('YOURAWSASSOCTAGID');
     });
   });
 });
