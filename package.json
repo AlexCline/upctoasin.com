@@ -6,13 +6,14 @@
   "dependencies": {
     "apac": "https://github.com/dmcquay/node-apac/tarball/master",
     "express": "3.x",
-    "js-yaml": "2.x",
-    "mocha":   "1.x",
-    "should":  "1.x",
-    "sqlite3":  "2.1.x",
-    "jscoverage": "0.3.x",
-    "coveralls": "2.0.x",
-    "mocha-lcov-reporter": "0.0.x"
+    "js-yaml": "*",
+    "mocha":   "*",
+    "should":  "*",
+    "sqlite3":  "2.x",
+    "jscoverage": "*",
+    "coveralls": "*",
+    "mocha-lcov-reporter": "*",
+    "nodealytics": "*"
   },
   "repository": {
     "type": "git",
