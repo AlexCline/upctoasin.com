@@ -1,3 +1,6 @@
+__Note: My Amazon Associates account was closed, so the site was shutdown. You're welcome to fork this repo and use the code for your own projects, but the hosted site will not be returning.__
+
+
 UPCtoASIN.com
 =============
 
